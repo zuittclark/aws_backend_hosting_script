@@ -1,7 +1,29 @@
 #!/bin/bash
 
-echo "What is your bootcamper number?"
-read bc # Replace this with your desired value for bc
+#!/bin/bash
+
+bc=""
+
+while getopts ":b:" opt; do
+  case $opt in
+    b)
+      bc="$OPTARG"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+if [ -z "$bc" ]; then
+  echo "Usage: $0 -b <bc>"
+  exit 1
+fi
 
 echo "Setting up for bootcamper$bc"
 echo "=================================="
