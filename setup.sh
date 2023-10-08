@@ -13,7 +13,7 @@ node -v
 echo "============================="
 
 echo "Installing project dependencies..."
-cd .. && npm install
+npm install
 echo "Dependencies installed successfully!"
 
 echo "Adding service to crontab..."
