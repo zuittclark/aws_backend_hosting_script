@@ -35,7 +35,7 @@ echo "~> Done adding pm2 service!"
 echo "===================================="
 echo "ADDING SERVICE TO CRONTAB..."
 folder_name=$(basename "$PWD")
-(crontab -l 2>/dev/null; echo "@reboot sh -c 'cd /home/bootcamper$bc/$repo_name && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'") | crontab -
+(crontab -l 2>/dev/null; echo "@reboot sh -c 'cd /home/bootcamper$bc/$folder_name && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'") | crontab -
 echo "~> Added service to crontab!"
 crontab -l
 
