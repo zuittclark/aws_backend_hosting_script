@@ -12,7 +12,7 @@ echo "Setting up production environment for bootcamper$bc"
 
 echo "MOVING CAPTONE PROJECT FOLDER TO HOME..."
 curr_dir_name=$(basename "$PWD")
-cp "../$curr_dir_name" ~/ 
+cp -r "../$curr_dir_name" ~/ 
 cd "~/$curr_dir_name"
 echo "==================================="
 
