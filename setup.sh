@@ -1,12 +1,33 @@
 #!/bin/bash
 
+bc=""
 
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <bc>"
-    exit 1
+usage() {
+  echo "Usage: $0 --bootcamper <bc>"
+  exit 1
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --bootcamper)
+      shift
+      if [[ $# -ge 1 ]]; then
+        bc="$1"
+        shift
+      else
+        usage
+      fi
+      ;;
+    *)
+      usage
+      ;;
+  esac
+done
+
+if [ -z "$bc" ]; then
+  usage
 fi
 
-bc="$1"
 
 echo "Setting up for bootcamper$bc"
 echo "=================================="

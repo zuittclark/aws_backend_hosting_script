@@ -3,7 +3,7 @@
 
 Example command:
 ```bash
-curl https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/setup.sh | bash -b 1
+curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/setup.sh | bash -s --bootcamper 1
 ```
 
 `Created by CLRK`
