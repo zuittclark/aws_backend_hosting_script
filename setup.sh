@@ -10,7 +10,11 @@ bc="$1"
 
 echo "Setting up production environment for bootcamper$bc"
 
+echo "MOVING CAPTONE PROJECT FOLDER TO HOME..."
+curr_dir_name = $(basename "$PWD")
+mv ../$curr_dir_name ~/ && cd ~/$curr_dir_name
 echo "==================================="
+
 echo "INSTALLING NODEJS VERSION 16.16.0..."
 curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 source ~/.nvm/nvm.sh
@@ -30,7 +34,7 @@ echo "~> Done adding pm2 service!"
 
 echo "===================================="
 echo "ADDING SERVICE TO CRONTAB..."
-repo_name=$(basename "$PWD")
+folder_name=$(basename "$PWD")
 (crontab -l 2>/dev/null; echo "@reboot sh -c 'cd /home/bootcamper$bc/$repo_name && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'") | crontab -
 echo "~> Added service to crontab!"
 crontab -l
