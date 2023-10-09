@@ -8,10 +8,10 @@ fi
 
 bc="$1"
 
-echo "Setting up for bootcamper$bc"
+echo "Setting up production environment for bootcamper$bc"
 
 echo "==================================="
-echo "Installing Node version 16.16.0..."
+echo "INSTALLING NODEJS VERSION 16.16.0..."
 curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install 16.16.0
@@ -19,21 +19,21 @@ nvm use 16.16.0
 node -v
 
 echo "===================================="
-echo "Installing project dependencies..."
+echo "INSTALLING EXPRESSJS PROJECT DEPENDECIES..."
 npm install
-echo "Dependencies installed successfully!"
+echo "~> Dependencies installed successfully!"
 
 echo "===================================="
-echo "Adding pm2 service..."
+echo "INTIALIZING PM2 SERVICE..."
 pm2 start index.js --name "b$bc" --interpreter ~/.nvm/versions/node/v16.16.0/bin/node
-echo "Done adding pm2 service!"
+echo "~> Done adding pm2 service!"
 
 echo "===================================="
-echo "Adding service to crontab..."
+echo "ADDING SERVICE TO CRONTAB..."
 repo_name=$(basename "$PWD")
 (crontab -l 2>/dev/null; echo "@reboot sh -c 'cd /home/bootcamper$bc/$repo_name && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'") | crontab -
-echo "Added service to crontab!"
+echo "~> Added service to crontab!"
 crontab -l
 
 echo "===================================="
-echo "Setup script executed successfully!"
+echo "~> Setup script executed successfully!"
