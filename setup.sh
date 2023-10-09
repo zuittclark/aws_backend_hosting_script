@@ -12,8 +12,8 @@ echo "Setting up production environment for bootcamper$bc"
 
 echo "MOVING CAPTONE PROJECT FOLDER TO HOME..."
 curr_dir_name=$(basename "$PWD")
-cp -r "../$curr_dir_name" ~/ 
-cd "~/$curr_dir_name"
+cp -r ../"$curr_dir_name" ~/ 
+cd ~/"$curr_dir_name"
 echo "==================================="
 
 echo "INSTALLING NODEJS VERSION 16.16.0..."
