@@ -9,11 +9,6 @@ fi
 bc="$1"
 
 echo "Setting up production environment for bootcamper$bc"
-
-echo "MOVING CAPTONE PROJECT FOLDER TO HOME..."
-curr_dir_name=$(basename "$PWD")
-cp -r ../"$curr_dir_name" ~/ 
-cd ~/"$curr_dir_name"
 echo "==================================="
 
 echo "INSTALLING NODEJS VERSION 16.16.0..."
@@ -35,8 +30,8 @@ echo "~> Done adding pm2 service!"
 
 echo "===================================="
 echo "ADDING SERVICE TO CRONTAB..."
-folder_name=$(basename "$PWD")
-(crontab -l 2>/dev/null; echo "@reboot sh -c 'cd /home/bootcamper$bc/$folder_name && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'") | crontab -
+current_dir=$("$PWD")
+(crontab -l 2>/dev/null; echo "@reboot sh -c 'cd $current_dir && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'") | crontab -
 echo "~> Added service to crontab!"
 crontab -l
 
