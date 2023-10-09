@@ -29,7 +29,8 @@ echo "Adding pm2 service..."
 pm2 start index.js --name "b$bc" --interpreter ~/.nvm/versions/node/v16.16.0/bin/node
 echo "Done adding pm2 service!"
 echo "Adding service to crontab..."
-(crontab -l 2>/dev/null; echo "@reboot sh -c 'cd /home/bootcamper$bc/app && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'") | crontab -
+repo_name=$(basename "$PWD")
+(crontab -l 2>/dev/null; echo "@reboot sh -c 'cd /home/bootcamper$bc/$repo_name && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'") | crontab -
 echo "Added service to crontab!"
 crontab -l
 echo "===================================="
