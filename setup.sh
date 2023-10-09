@@ -1,32 +1,12 @@
 #!/bin/bash
 
-bc=""
-
-usage() {
-  echo "Usage: $0 --bootcamper <bc>"
-  exit 1
-}
-
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    --bootcamper)
-      shift
-      if [[ $# -ge 1 ]]; then
-        bc="$1"
-        shift
-      else
-        usage
-      fi
-      ;;
-    *)
-      usage
-      ;;
-  esac
-done
-
-if [ -z "$bc" ]; then
-  usage
+# Check if the number of command-line arguments is 1 (bc value)
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <bc>"
+    exit 1
 fi
+
+bc="$1"
 
 
 echo "Setting up for bootcamper$bc"
