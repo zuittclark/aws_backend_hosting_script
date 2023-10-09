@@ -30,7 +30,7 @@ echo "~> Done adding pm2 service!"
 
 echo "===================================="
 echo "ADDING SERVICE TO CRONTAB..."
-current_dir=$("$PWD")
+current_dir="$PWD"
 (crontab -l 2>/dev/null; echo "@reboot sh -c 'cd $current_dir && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'") | crontab -
 echo "~> Added service to crontab!"
 crontab -l
