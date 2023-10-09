@@ -2,7 +2,7 @@
 echo "=========================================="
 echo "Pulling changes from remote repository..."
 echo "=========================================="
-git pull
+git pull 
 echo "=========================================="
 echo "Restarting pm2 services..."
 echo "=========================================="

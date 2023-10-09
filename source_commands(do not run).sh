@@ -1,0 +1,183 @@
+# ================
+# INSTRUCTOR SIDE
+# ================
+#- connect to instance:
+ssh -o ServerAliveInterval=60 -i "zuitt_keypair_us_east2.pem" ubuntu@ec2-3-19-92-76.us-east-2.compute.amazonaws.com
+
+#- Add bootcamper
+sudo useradd --create-home --shell /bin/bash --gid bootcamper --comment "Ian Curay" bootcamper1
+
+#- Check the user list
+less /etc/passwd | grep bootcamper
+
+#- Setup ssh key for bootcamper
+sudo mkdir -p /home/bootcamper1/.ssh/
+sudo touch /home/bootcamper1/.ssh/authorized_keys
+sudo chown -R bootcamper1:bootcamper /home/bootcamper1/.ssh/
+sudo chmod 644 /home/bootcamper1/.ssh/authorized_keys
+sudo chmod 700 /home/bootcamper1/.ssh/
+
+#- Add bootcamper server to nginx
+sudo nano /etc/nginx/sites-available/default
+    #add the ff under the "server_name_;" block:
+
+        location /b1 {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            proxy_pass http://localhost:4001;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+        
+        location /b2 {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            proxy_pass http://localhost:4002;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        location /b3 {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            proxy_pass http://localhost:4003;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        location /b4 {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            proxy_pass http://localhost:4004;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        location /b5 {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            proxy_pass http://localhost:4005;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        location /b6 {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            proxy_pass http://localhost:4006;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        location /b7 {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            proxy_pass http://localhost:4007;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        location /b8 {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            proxy_pass http://localhost:4008;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        location /b9 {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            proxy_pass http://localhost:4009;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        location /b10 {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            proxy_pass http://localhost:4010;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+#- Restart nginx service
+sudo systemctl restart nginx
+sudo systemctl status nginx
+
+
+#~~~~~~~~~~~~~
+npm install
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#================
+#BOOTCAMPER SIDE
+#================
+#- access
+ssh -o ServerAliveInterval=60 bootcamper1@ec2-18-189-109-12.us-east-2.compute.amazonaws.com
+
+#AUTO SETUP
+# Note: the 1 arg after the -- pertains to the bootcamper number
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/setup.sh | bash -s -- 1
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#REDEPLOY CHANGES SCRIPT
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/redeploy.sh | bash
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# MANUAL SETUP
+#- Setup node version (select only one of the ff)
+curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+    #alternatives:
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+        curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+source ~/.nvm/nvm.sh
+nvm install 16.16.0
+nvm use 16.16.0
+
+#- Clone CSP2 repo
+
+#- install dependencies
+npm install
+
+#- Add to pm2
+pm2 start index.js --name b1 --interpreter ~/.nvm/versions/node/v16.16.0/bin/node
+
+#- Create a cron job (to run the server on boot)
+crontab -e #select 1 for nano editor 
+    #Add the ff:
+        @reboot sh -c 'cd /home/bootcamper1/app && pm2 start index.js --name b1 --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'
+crontab -l #to check
+
