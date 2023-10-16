@@ -12,7 +12,7 @@ echo "Setting up production environment for bootcamper$bc"
 echo "==================================="
 
 echo "INSTALLING NODEJS VERSION 16.16.0..."
-curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh
+curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install 16.16.0 
 nvm use 16.16.0 
