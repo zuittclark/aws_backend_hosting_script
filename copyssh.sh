@@ -26,7 +26,7 @@ read -p "Enter the key bits (default: $KEY_BITS): " CUSTOM_KEY_BITS
 KEY_BITS="${CUSTOM_KEY_BITS:-$KEY_BITS}"
 
 # Generate SSH key pair
-ssh-keygen -t "$KEY_TYPE" -b "$KEY_BITS" -f "$KEY_FILE"
+ssh-keygen -t "$KEY_TYPE" -b "$KEY_BITS" -f "$KEY_FILE" -N ""
 
 # Display the public key
 echo -e "\nYour public key is:"
