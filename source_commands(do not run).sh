@@ -182,7 +182,7 @@ ssh -o ServerAliveInterval=60 bootcamper1@ec2-18-189-109-12.us-east-2.compute.am
 
 #Generate SSH Key
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/copyssh.sh | bash
+curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/sshkeygen.sh | bash
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 #AUTO SETUP

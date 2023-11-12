@@ -3,7 +3,7 @@
 #GENERATE SSH KEY
 
 # Set the default key file location and type
-KEY_FILE="$HOME/.ssh/id_rsa_git"
+KEY_FILE="$HOME/.ssh/id_rsa"
 KEY_TYPE="rsa"
 KEY_BITS="2048"
 
@@ -34,4 +34,4 @@ ssh-keygen -t "$KEY_TYPE" -b "$KEY_BITS" -f "$KEY_FILE" -N ""
 echo "SSH Key generated!"
 echo -e "\nYour public key is: \n"
 cat "${KEY_FILE}.pub"
-
+echo "/n"
