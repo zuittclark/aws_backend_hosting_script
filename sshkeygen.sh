@@ -10,6 +10,8 @@ KEY_BITS="2048"
 # Check if the key file already exists
 if [ -f "$KEY_FILE" ]; then
     echo "SSH key already exists at: $KEY_FILE"
+    echo -e "\nYour public key is: \n"
+    cat "${KEY_FILE}.pub"
     exit 1
 fi
 
@@ -29,13 +31,7 @@ KEY_BITS="${CUSTOM_KEY_BITS:-$KEY_BITS}"
 ssh-keygen -t "$KEY_TYPE" -b "$KEY_BITS" -f "$KEY_FILE" -N ""
 
 # Display the public key
-echo -e "\nYour public key is:"
+echo "SSH Key generated!"
+echo -e "\nYour public key is: \n"
 cat "${KEY_FILE}.pub"
 
-
-echo "Copying public key to clipboard..."
-
-xclip -sel clip < ${KEY_FILE}.pub
-echo "\n===================================="
-echo "SSH Key Copied to Clipboard!"
-echo "===================================="
