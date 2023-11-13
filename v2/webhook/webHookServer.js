@@ -20,12 +20,12 @@ app.post(`/b${bootcamperNo}-webhook`, (req, res) => {
     if (err) {
       console.error(`Error: ${stderr}`);
       return res.status(500).send({
-        message: 'Deployment failed',
-        error: `Error: ${stderr}`
+        message: 'Deployment failed :(',
+        error: `${stderr}`
       });
     }
     console.log(`Deployment successful: ${stdout}`);
-    res.status(200).send('Deployment successful!');
+    res.status(200).send({message: 'Deployment successful!'});
   });
 });
 

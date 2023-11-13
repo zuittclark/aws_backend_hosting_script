@@ -27,6 +27,7 @@ echo -e "\n===================================="
 echo -e "INSTALLING WEBHOOK FOR DEPLOYMENTS..."
 git clone --depth=1 https://github.com/zuittclark/aws_backend_hosting_script.git --branch=master --single-branch v2-temp || { echo "Error cloning"; exit 1; }
 mv v2-temp/v2/webhook webhook && rm -rf v2-temp 
+chmod +x webhook/deploy.sh
 echo -e "~> Web Hook installed successfully!"
 
 echo -e "\n===================================="
