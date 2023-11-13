@@ -33,7 +33,7 @@ else
     mv v2-temp/v2/webhook webhook && rm -rf v2-temp 
     chmod +x webhook/deploy.sh
     echo -e "~> Web Hook installed successfully!"
-if
+fi
 
 echo -e "\n===================================="
 echo "INITIALIZING PM2 SERVICE..."
