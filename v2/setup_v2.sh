@@ -25,10 +25,15 @@ echo "~> Dependencies installed successfully!"
 
 echo -e "\n===================================="
 echo -e "INSTALLING WEBHOOK FOR DEPLOYMENTS..."
-git clone --depth=1 https://github.com/zuittclark/aws_backend_hosting_script.git --branch=master --single-branch v2-temp || { echo "Error cloning"; exit 1; }
-mv v2-temp/v2/webhook webhook && rm -rf v2-temp 
-chmod +x webhook/deploy.sh
-echo -e "~> Web Hook installed successfully!"
+if [ -d "webhook" ]
+then
+    echo -e "~> Web Hook already installed. Continuing..."
+else
+    git clone --depth=1 https://github.com/zuittclark/aws_backend_hosting_script.git --branch=master --single-branch v2-temp || { echo "Error cloning"; exit 1; }
+    mv v2-temp/v2/webhook webhook && rm -rf v2-temp 
+    chmod +x webhook/deploy.sh
+    echo -e "~> Web Hook installed successfully!"
+if
 
 echo -e "\n===================================="
 echo "INITIALIZING PM2 SERVICE..."
