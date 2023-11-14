@@ -10,46 +10,24 @@ curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_scrip
 
 
 ```bash
-#B320 DNS
-g1 - http://ec2-3-129-121-110.us-east-2.compute.amazonaws.com/b1
-g2 - http://ec2-3-14-158-255.us-east-2.compute.amazonaws.com/b1
-g3 - http://ec2-18-190-141-12.us-east-2.compute.amazonaws.com/b1
-
-#Needed Command
-curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/setup.sh | bash -s -- 1
-
-curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/redeploy.sh | bash
-
 # ================
 # INSTRUCTOR SIDE
 # ================
-# #- connect to instance:
-# ssh -o ServerAliveInterval=60 -i "zuitt_keypair_us_east2.pem" ubuntu@ec2-3-19-92-76.us-east-2.compute.amazonaws.com
-
-# #- Add bootcamper
-# sudo useradd --create-home --shell /bin/bash --gid bootcamper --comment "Ian Curay" bootcamper1
-
-# #- Check the user list
-# less /etc/passwd | grep bootcamper
-
-# #- Setup ssh key for bootcamper
-# sudo mkdir -p /home/bootcamper1/.ssh/
-# sudo touch /home/bootcamper1/.ssh/authorized_keys
-# sudo chown -R bootcamper1:bootcamper /home/bootcamper1/.ssh/
-# sudo chmod 644 /home/bootcamper1/.ssh/authorized_keys
-# sudo chmod 700 /home/bootcamper1/.ssh/
-
 #============================================================
 #- For auto setup
 https://zuittclark.github.io/script-generator-cpst2Hosting/
 # importing script manually
 scp -i ~/.ssh/zuitt_keypair_us_east2.pem instructor_script.sh ubuntu@ec2-18-189-109-12.us-east-2.compute.amazonaws.com:~/
 #============================================================
+```
 
+```bash
 #- Add bootcamper server to nginx (This still need to be done manually)
 sudo nano /etc/nginx/sites-available/default
     #add the ff under the "server_name_;" block:
-#~~~~~~~~~~~~~~~~~~~~ copy the following: start ~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~ copy the following ~~~~~~~~~~~~~~~~~~~~
+```
+```bash
         location /b1 {
             # First attempt to serve request as file, then
             # as directory, then fall back to displaying a 404.
@@ -280,11 +258,14 @@ sudo nano /etc/nginx/sites-available/default
             proxy_set_header Host $host;
             proxy_cache_bypass $http_upgrade;
         }
-#~~~~~~~~~~~~~~~~~~~~ copy the following: end ~~~~~~~~~~~~~~~~~~~~
+```
+
+```bash
 #- Restart nginx service
 sudo systemctl restart nginx
 sudo systemctl status nginx
-
+```
+```bash
 #================
 #BOOTCAMPER SIDE
 #================
