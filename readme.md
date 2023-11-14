@@ -204,17 +204,6 @@ sudo nano /etc/nginx/sites-available/default
             proxy_cache_bypass $http_upgrade;
         }
 
-        location /b9-webhook {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to displaying a 404.
-            proxy_pass http://localhost:4109;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
         location /b9 {
             # First attempt to serve request as file, then
             # as directory, then fall back to displaying a 404.
