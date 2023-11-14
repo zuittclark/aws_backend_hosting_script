@@ -20,13 +20,16 @@ https://zuittclark.github.io/script-generator-cpst2Hosting/
 scp -i ~/.ssh/zuitt_keypair_us_east2.pem instructor_script.sh ubuntu@ec2-18-189-109-12.us-east-2.compute.amazonaws.com:~/
 #============================================================
 ```
-
+### Add bootcamper server to nginx (This still need to be done manually)
 ```bash
-#- Add bootcamper server to nginx (This still need to be done manually)
 sudo nano /etc/nginx/sites-available/default
-    #add the ff under the "server_name_;" block:
-#~~~~~~~~~~~~~~~~~~~~ copy the following ~~~~~~~~~~~~~~~~~~~~
 ```
+### Restart nginx service
+```bash
+sudo systemctl restart nginx
+sudo systemctl status nginx
+```
+### add the ff under the "server_name_;" block:
 ```bash
         location /b1 {
             # First attempt to serve request as file, then
@@ -247,12 +250,6 @@ sudo nano /etc/nginx/sites-available/default
             proxy_set_header Host $host;
             proxy_cache_bypass $http_upgrade;
         }
-```
-
-```bash
-#- Restart nginx service
-sudo systemctl restart nginx
-sudo systemctl status nginx
 ```
 ```bash
 #================
