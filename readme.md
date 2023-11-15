@@ -24,11 +24,6 @@ scp -i ~/.ssh/zuitt_keypair_us_east2.pem instructor_script.sh ubuntu@ec2-18-189-
 ```bash
 sudo nano /etc/nginx/sites-available/default
 ```
-### Restart nginx service
-```bash
-sudo systemctl restart nginx
-sudo systemctl status nginx
-```
 ### add the ff under the "server_name_;" block:
 ```bash
         location /b1 {
@@ -251,33 +246,67 @@ sudo systemctl status nginx
             proxy_cache_bypass $http_upgrade;
         }
 ```
+### Restarting nginx service
+```bash
+sudo systemctl restart nginx
+sudo systemctl status nginx
+```
+
+### To delete user
+```bash
+sudo pkill -u bootcamper#
+sudo userdel -r bootcamper#
+
+```
+### To delete all users
+```bash
+for i in {1..10}; do
+    # Kill processes associated with the user
+    sudo pkill -u bootcamper$i
+done
+```
+```bash
+for i in {1..10}; do
+    # Delete the user along with the home directory
+    sudo userdel -r bootcamper$i
+done
+```
+
+### Check if the user is deleted
+```sh
+less /etc/passwd | grep bootcamper
+```
+
+### Other stuff
+```bash
+num=1
+rm -rf node_modules/ webhook/ && pm2 stop all && pm2 delete b$num && pm2 delete webhook-server$num && crontab -r
+rm -rf node_modules/ && crontab -r
+``` 
+
+## BOOTCAMPER SIDE SETUP
 ```bash
 #================
 #BOOTCAMPER SIDE
 #================
-#- access
+#- ssh to server
 ssh -o ServerAliveInterval=60 bootcamper1@ec2-18-189-109-12.us-east-2.compute.amazonaws.com
 
-#AUTO SETUP (v1)
-    #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# AUTO SETUP (v1)
+
+    # Deploy script
     curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/setup.sh | bash -s -- 1
-    #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Note: the 1 arg after the -- pertains to the bootcamper number
 
     #REDEPLOY CHANGES SCRIPT 
-    #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/redeploy.sh | bash
-    #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-#AUTO SETUP (v2)
-    #Generate SSH Key
-    #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# AUTO SETUP (v2)
+    # Generate SSH Key
     curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2/sshkeygen.sh | bash
-    #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    # Deploy script
     curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2/setup_v2.sh | bash -s -- 1
-    #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     # Note: the 1 arg after the -- pertains to the bootcamper number
 
 # MANUAL SETUP
