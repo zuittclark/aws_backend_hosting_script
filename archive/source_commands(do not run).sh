@@ -37,7 +37,7 @@ scp -i ~/.ssh/zuitt_keypair_us_east2.pem instructor_script.sh ubuntu@ec2-18-189-
 #- Add bootcamper server to nginx (This still need to be done manually)
 sudo nano /etc/nginx/sites-available/default
     #add the ff under the "server_name_;" block:
-#~~~~~~~~~~~~~~~~~~~~ copy the following: start ~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~ copy the following: start (this is for v2) ~~~~~~~~~~~~~~~~~~~~
         location /b1 {
             # First attempt to serve request as file, then
             # as directory, then fall back to displaying a 404.

@@ -1,0 +1,2 @@
+## Note:
+In this implementation the webhook is installed in each of the bootcamper session which is resource intensive since each bootcamper will have their own webhook handler server. In lieu of this, it is recommended to use v2.1 which uses using a single webhook handler server for all the bootcamper.

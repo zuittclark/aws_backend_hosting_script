@@ -14,10 +14,10 @@ echo -e "\n==================================="
 echo -e "INSTALLING NODEJS VERSION 16.16.0..."
 curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 source ~/.nvm/nvm.sh
-nvm install 16.16.0 
-nvm use 16.16.0 
-# nvm install 20.9.0 
-# nvm use 20.9.0 
+# nvm install 16.16.0 
+# nvm use 16.16.0 
+nvm install 20.9.0 
+nvm use 20.9.0 
 node -v
 
 echo -e "\n===================================="
@@ -26,9 +26,18 @@ npm install || { echo "Error installing npm dependencies"; exit 1; }
 echo -e "~> Dependencies installed successfully!"
 
 echo -e "\n===================================="
+echo -e "SETTING UP REDEPLOYMENT SCRIPT..."
+git clone --depth=1 https://github.com/zuittclark/aws_backend_hosting_script.git --branch=master --single-branch temp || { echo "Error cloning"; exit 1; }
+mv temp/v2.1/bc/redeploy.sh ~/ && rm -rf temp 
+echo -e "~> Done setting up redeployment script!"
+
+
+echo -e "\n===================================="
 echo -e "INITIALIZING PM2 SERVICE..."
 pm2 start index.js --name "b$bc" --interpreter ~/.nvm/versions/node/v16.16.0/bin/node || { echo "Error starting PM2 service"; exit 1; }
 echo -e "~> Done adding pm2 service!"
+
+
 
 echo -e "\n===================================="
 echo -e "ADDING SERVICE TO CRONTAB..."

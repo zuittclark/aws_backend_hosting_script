@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 
-echo "Setting up production environment for bootcamper$bc"
+echo "Setting up production environment for Webhook Handler Server"
 echo "==================================="
 
 echo "INSTALLING NODEJS VERSION 16.16.0..."
@@ -12,13 +12,13 @@ nvm use 20.9.0
 node -v
 
 echo -e "\n===================================="
-echo -e "INITIALIZING PM2 SERVICE..."
+echo -e "INSTALLING WEBHOOK SERVER..."
 git clone --depth=1 https://github.com/zuittclark/aws_backend_hosting_script.git --branch=master --single-branch temp || { echo "Error cloning"; exit 1; }
 mv temp/v2.1/inst/webhook webhookServer && rm -rf temp 
 cd webhookServer
 pwd
 npm install || { echo "Error installing npm dependencies"; exit 1; }
-echo -e "~> Web Hook installed successfully!"
+echo -e "~> Webhook installed successfully!"
 
 echo -e "===================================="
 echo -e "INITIALIZING PM2 SERVICE..."

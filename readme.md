@@ -26,6 +26,17 @@ sudo nano /etc/nginx/sites-available/default
 ```
 ### add the ff under the "server_name_;" block:
 ```bash
+        location /webhook {
+            # First attempt to serve request as file, then
+            # as directory, then fall back to displaying a 404.
+            proxy_pass http://localhost:4100;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
         location /b1 {
             # First attempt to serve request as file, then
             # as directory, then fall back to displaying a 404.
@@ -37,32 +48,10 @@ sudo nano /etc/nginx/sites-available/default
             proxy_cache_bypass $http_upgrade;
         }
 
-        location /b1-webhook {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to displaying a 404.
-            proxy_pass http://localhost:4101;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-        
         location /b2 {
             # First attempt to serve request as file, then
             # as directory, then fall back to displaying a 404.
             proxy_pass http://localhost:4002;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
-        location /b2-webhook {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to displaying a 404.
-            proxy_pass http://localhost:4102;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
@@ -80,33 +69,10 @@ sudo nano /etc/nginx/sites-available/default
             proxy_set_header Host $host;
             proxy_cache_bypass $http_upgrade;
         }
-
-        location /b3-webhook {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to displaying a 404.
-            proxy_pass http://localhost:4103;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
         location /b4 {
             # First attempt to serve request as file, then
             # as directory, then fall back to displaying a 404.
             proxy_pass http://localhost:4004;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
-        location /b4-webhook {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to displaying a 404.
-            proxy_pass http://localhost:4104;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
@@ -125,32 +91,10 @@ sudo nano /etc/nginx/sites-available/default
             proxy_cache_bypass $http_upgrade;
         }
 
-        location /b5-webhook {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to displaying a 404.
-            proxy_pass http://localhost:4105;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
         location /b6 {
             # First attempt to serve request as file, then
             # as directory, then fall back to displaying a 404.
             proxy_pass http://localhost:4006;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
-        location /b6-webhook {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to displaying a 404.
-            proxy_pass http://localhost:4106;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
@@ -169,32 +113,10 @@ sudo nano /etc/nginx/sites-available/default
             proxy_cache_bypass $http_upgrade;
         }
 
-        location /b7-webhook {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to displaying a 404.
-            proxy_pass http://localhost:4107;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
         location /b8 {
             # First attempt to serve request as file, then
             # as directory, then fall back to displaying a 404.
             proxy_pass http://localhost:4008;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
-        location /b8-webhook {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to displaying a 404.
-            proxy_pass http://localhost:4108;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
@@ -213,32 +135,10 @@ sudo nano /etc/nginx/sites-available/default
             proxy_cache_bypass $http_upgrade;
         }
 
-        location /b9-webhook {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to displaying a 404.
-            proxy_pass http://localhost:4109;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
         location /b10 {
             # First attempt to serve request as file, then
             # as directory, then fall back to displaying a 404.
             proxy_pass http://localhost:4010;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
-        location /b10-webhook {
-            # First attempt to serve request as file, then
-            # as directory, then fall back to displaying a 404.
-            proxy_pass http://localhost:4110;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
@@ -251,6 +151,12 @@ sudo nano /etc/nginx/sites-available/default
 sudo systemctl restart nginx
 sudo systemctl status nginx
 ```
+
+### Install Webhook Handler Server for Auto deploy
+```bash
+curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2.1/inst/installWebhookServer.sh | bash
+```
+
 
 ### To delete user
 ```bash
