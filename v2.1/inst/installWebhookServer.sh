@@ -4,7 +4,7 @@
 echo "Setting up production environment for Webhook Handler Server"
 echo "==================================="
 
-echo "INSTALLING NODEJS VERSION 16.16.0..."
+echo "INSTALLING NODEJS VERSION 20.9.0..."
 curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install 20.9.0 

@@ -22,7 +22,7 @@ app.post("/webhook/bootcamper/:bc(\\d{1,2})", (req, res) => {
 
   let command = `echo "${sudoPassword}" | sudo -S -u bootcamper${bc} /home/bootcamper${bc}/redeploy.sh`;
   console.log("\n++++++++++++++++++++++++++++++++++++++++++++++++++++")
-  console.log(`Webhook received from bootcamper${bc}. Deploying...`);
+  console.log(`Webhook received from bootcamper${bc}. Deploying changes...`);
   console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++\n")
   exec(command, (err, stdout, stderr) => {
     if (err) {
@@ -32,7 +32,7 @@ app.post("/webhook/bootcamper/:bc(\\d{1,2})", (req, res) => {
         error: `${stderr}`
       });
     }
-    console.log("Deployment successful:");
+    console.log("Deployment started successfully!");
     console.log(stdout)
   });
   res.status(200).send({message: 'Deployment successful!'});
