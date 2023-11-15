@@ -8,28 +8,30 @@ fi
 
 bc="$1"
 
-echo "Setting up production environment for bootcamper$bc"
-echo "==================================="
+echo -e "Setting up production environment for bootcamper$bc"
 
-echo "INSTALLING NODEJS VERSION 16.16.0..."
+echo -e "\n==================================="
+echo -e "INSTALLING NODEJS VERSION 16.16.0..."
 curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install 16.16.0 
 nvm use 16.16.0 
+# nvm install 20.9.0 
+# nvm use 20.9.0 
 node -v
 
-echo "===================================="
-echo "INSTALLING EXPRESSJS PROJECT DEPENDENCIES..."
+echo -e "\n===================================="
+echo -e "INSTALLING EXPRESSJS PROJECT DEPENDENCIES..."
 npm install || { echo "Error installing npm dependencies"; exit 1; }
-echo "~> Dependencies installed successfully!"
+echo -e "~> Dependencies installed successfully!"
 
-echo "===================================="
-echo "INITIALIZING PM2 SERVICE..."
+echo -e "\n===================================="
+echo -e "INITIALIZING PM2 SERVICE..."
 pm2 start index.js --name "b$bc" --interpreter ~/.nvm/versions/node/v16.16.0/bin/node || { echo "Error starting PM2 service"; exit 1; }
-echo "~> Done adding pm2 service!"
+echo -e "~> Done adding pm2 service!"
 
-echo "===================================="
-echo "ADDING SERVICE TO CRONTAB..."
+echo -e "\n===================================="
+echo -e "ADDING SERVICE TO CRONTAB..."
 current_dir="$PWD"
 #This updated command removes duplication of the cron command on multiple execution of the script
 cron_command="@reboot sh -c 'cd $current_dir && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'"
@@ -37,6 +39,8 @@ cron_command="@reboot sh -c 'cd $current_dir && pm2 start index.js --name b$bc -
 echo "~> Updated crontab successfully!"
 crontab -l
 
-echo "===================================="
-echo "~> Setup script executed successfully!"
-echo "===================================="
+echo -e "\n~> Setup script executed successfully!"
+echo -e "\n=================================================="
+echo -e "Congratulations!"
+echo -e "You have successfully deployed your Backend API."
+echo -e "=================================================="
