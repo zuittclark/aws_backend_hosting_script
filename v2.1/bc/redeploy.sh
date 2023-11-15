@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/bootcamper1/csp2-*
+cd $HOME/csp2-*
 pwd
 echo "=========================================="
 echo "Pulling changes from remote repository..."

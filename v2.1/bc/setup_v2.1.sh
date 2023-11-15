@@ -29,6 +29,7 @@ echo -e "\n===================================="
 echo -e "SETTING UP REDEPLOYMENT SCRIPT..."
 git clone --depth=1 https://github.com/zuittclark/aws_backend_hosting_script.git --branch=master --single-branch temp || { echo "Error cloning"; exit 1; }
 mv temp/v2.1/bc/redeploy.sh ~/ && rm -rf temp 
+chmod +x ~/redeploy.sh
 echo -e "~> Done setting up redeployment script!"
 
 
