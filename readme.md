@@ -186,7 +186,7 @@ less /etc/passwd | grep bootcamper
 ### Other stuff
 ```bash
 num=1
-rm -rf node_modules/ webhook/ && pm2 stop all && pm2 delete b$num && pm2 delete webhook-server$num && crontab -r
+rm -rf node_modules/ webhook/ && pm2 stop all && pm2 delete b$num && crontab -r
 rm -rf node_modules/ && crontab -r
 ``` 
 
@@ -207,12 +207,12 @@ ssh -o ServerAliveInterval=60 bootcamper1@ec2-18-189-109-12.us-east-2.compute.am
     #REDEPLOY CHANGES SCRIPT 
     curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/redeploy.sh | bash
 
-# AUTO SETUP (v2)
+# AUTO SETUP (v2.1)
     # Generate SSH Key
-    curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2/sshkeygen.sh | bash
+    curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2.1/bc/sshkeygen.sh | bash
 
     # Deploy script
-    curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2/setup_v2.sh | bash -s -- 1
+    curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2.1/bc/setup_v2.1.sh | bash -s -- 1
     # Note: the 1 arg after the -- pertains to the bootcamper number
 
 # MANUAL SETUP
