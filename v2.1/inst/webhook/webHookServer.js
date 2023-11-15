@@ -28,7 +28,7 @@ app.get("/webhook/bootcamper/:bc(\\d{1,2})", (req, res) => {
   // Check if the log file exists
   if (fs.existsSync(logFilePath)) {
     // Read the log file content
-    const logContent = fs.readFileSync(logFilePath, 'utf8');
+    let logContent = fs.readFileSync(logFilePath, 'utf8');
 
     // Replace newline characters with HTML line breaks
     logContent = logContent.replace(/\n/g, '<br>');

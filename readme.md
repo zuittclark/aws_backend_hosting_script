@@ -8,12 +8,8 @@ curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_scrip
 
 `Created by CLRK`
 
-
+## INSTRUCTOR SIDE SETUP
 ```bash
-# ================
-# INSTRUCTOR SIDE
-# ================
-#============================================================
 #- For auto setup
 https://zuittclark.github.io/script-generator-cpst2Hosting/
 # importing script manually
