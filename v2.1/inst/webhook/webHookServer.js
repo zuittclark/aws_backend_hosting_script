@@ -89,7 +89,8 @@ app.post("/webhook/bootcamper/:bc(\\d{1,2})", (req, res) => {
   console.log(`Webhook received from bootcamper${bc}. Deploying changes...`);
   console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++\n")
   let currentDate = new Date();
-  logger.info(`\n\n\n****************************************** DEPLOYMENT CREATED [${currentDate.toLocaleString()}] ******************************************\n`)
+  let options = { timeZone: 'Asia/Shanghai'};
+  logger.info(`\n\n\n****************************************** DEPLOYMENT CREATED [${currentDate.toLocaleString("en-US", options)}}] ******************************************\n`)
   logger.info(`Webhook received from bootcamper${bc}. Deploying changes...`);
   exec(command, (err, stdout, stderr) => {
     if (err) {
