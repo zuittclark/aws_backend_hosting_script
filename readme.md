@@ -182,8 +182,13 @@ less /etc/passwd | grep bootcamper
 ### Other stuff
 ```bash
 num=1
-rm -rf node_modules/ webhook/ && pm2 stop all && pm2 delete b$num && crontab -r
+rm -rf node_modules/ && pm2 stop all && pm2 delete b$num && crontab -r
+
 rm -rf node_modules/ && crontab -r
+
+num=1
+rm -rf node_modules/ && pm2 stop all && pm2 delete b$num && crontab -r
+curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2.1/bc/setup_v2.1.sh | bash -s -- $num
 ``` 
 
 ## BOOTCAMPER SIDE SETUP
