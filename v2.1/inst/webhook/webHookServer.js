@@ -23,7 +23,7 @@ app.get("/webhook/bootcamper/:bc(\\d{1,2})", (req, res) => {
     });
   }
 
-  const logFilePath = path.join(__dirname, `logs/deploy${bc}.log`); // Adjust the file path as needed
+  const logFilePath = path.join(__dirname, `logs/deploy${bc}.log`); 
 
   // Check if the log file exists
   if (fs.existsSync(logFilePath)) {
@@ -55,7 +55,7 @@ app.get("/webhook/bootcamper/:bc(\\d{1,2})", (req, res) => {
     </html>
     `
     // Send the log content as HTML response
-    res.send(content); // Use <pre> to preserve formatting
+    res.send(content);
   } else {
     // If the log file doesn't exist, send a 404 Not Found response
     res.status(404).send('Log file not found');
