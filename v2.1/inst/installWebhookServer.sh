@@ -4,8 +4,9 @@
 echo -e "Setting up production environment for Webhook Handler Server..."
 echo -e "==================================="
 echo -e "NOTE: This is to make the webhook handler work properly since we are executing command to a different user."
+#This is not the most secure way to do it but it will suffice for now
 echo -e "Setting user password.."
-echo "ubuntu:1234" | sudo chpasswd || { echo "Error updating password"; exit 1; }
+echo "ubuntu:1234" | sudo chpasswd || { echo "Error updating password"; exit 1; } 
 echo -e "Changed user password successfully!"
 
 echo -e "==================================="
