@@ -35,7 +35,7 @@ echo -e "~> Done setting up redeployment script!"
 
 echo -e "\n===================================="
 echo -e "INITIALIZING PM2 SERVICE..."
-pm2 start index.js --name "b$bc" --interpreter ~/.nvm/versions/node/v16.16.0/bin/node || { echo "Error starting PM2 service"; exit 1; }
+pm2 start index.js --name "b$bc" --interpreter ~/.nvm/versions/node/v20.9.0/bin/node || { echo "Error starting PM2 service"; exit 1; }
 echo -e "~> Done adding pm2 service!"
 
 
@@ -44,7 +44,7 @@ echo -e "\n===================================="
 echo -e "ADDING SERVICE TO CRONTAB..."
 current_dir="$PWD"
 #This updated command removes duplication of the cron command on multiple execution of the script
-cron_command="@reboot sh -c 'cd $current_dir && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'"
+cron_command="@reboot sh -c 'cd $current_dir && pm2 start index.js --name b$bc --interpreter ~/.nvm/versions/node/v20.9.0/bin/node'"
 { echo "$cron_command"; } | crontab - || { echo "Error overwriting crontab"; exit 1; }
 echo "~> Updated crontab successfully!"
 crontab -l
