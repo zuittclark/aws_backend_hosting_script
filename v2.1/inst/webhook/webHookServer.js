@@ -6,7 +6,7 @@ const path = require('path');
 
 const app = express();
 const PORT = 4100;
-const sudoPassword = "1234"; // quite questionable choice HAHAHA but it works for now. This should be stored in an enviroment variable.
+const sudoPassword = "1234"; // quite questionable choice HAHAHA but it works for now. This should be a more secure password and is stored in an enviroment variable.
 // Parse JSON requests
 app.use(express.json());
 
