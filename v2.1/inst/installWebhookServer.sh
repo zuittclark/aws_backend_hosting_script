@@ -1,10 +1,15 @@
 #!/bin/bash -e
 
 
-echo "Setting up production environment for Webhook Handler Server"
-echo "==================================="
+echo -e "Setting up production environment for Webhook Handler Server..."
+echo -e "==================================="
+echo -e "NOTE: This is to make the webhook handler work properly since we are executing command to a different user."
+echo -e "Setting user password.."
+echo "ubuntu:1234" | sudo chpasswd || { echo "Error updating password"; exit 1; }
+echo -e "Changed user password successfully!"
 
-echo "INSTALLING NODEJS VERSION 20.9.0..."
+echo -e "==================================="
+echo -e "INSTALLING NODEJS VERSION 20.9.0..."
 curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm install 20.9.0 
