@@ -11,7 +11,12 @@ const sudoPassword = "1234"; // Note: this works for nowbut this should be a mor
 app.use(express.json());
 
 app.get("/webhook", (req, res) => {
-  res.send(`Hello World! Connected to webhook handler server: Listening for latest changes...`);
+  let content = `
+    <h3 style="font-family: 'Courier New', Courier, monospace; text-align: center; margin: 5rem; background-color: rgb(0, 255, 115); padding: 2rem; border-radius: 10px;">
+      Hello World! Connected to webhook handler server: Listening for latest changes...
+    </h3>
+  `
+  res.send(content);
 });
 
 app.get("/webhook/bootcamper/:bc(\\d{1,2})", (req, res) => {
