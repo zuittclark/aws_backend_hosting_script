@@ -16,6 +16,12 @@ https://zuittclark.github.io/script-generator-cpst2Hosting/
 scp -i ~/.ssh/zuitt_keypair_us_east2.pem instructor_script.sh ubuntu@ec2-18-189-109-12.us-east-2.compute.amazonaws.com:~/
 #============================================================
 ```
+### Allocate and setup Swap File
+
+```bash
+curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2.1/inst/allocateswap.sh | bash
+```
+
 ### Add bootcamper server to nginx (This still need to be done manually)
 ```bash
 sudo nano /etc/nginx/sites-available/default
