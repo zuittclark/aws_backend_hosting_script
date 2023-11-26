@@ -100,7 +100,7 @@ app.post("/webhook/bootcamper/:bc(\\d{1,2})", (req, res) => {
   exec(command, (err, stdout, stderr) => {
     if (err) {
       console.error(`Error from bootcamper${bc}: ${stderr}`);
-      logger.error(`Webhook received from bootcamper${bc}. Deploying changes...`);
+      logger.error(`Error from bootcamper${bc}: ${stderr}`);
       return res.status(500).send({
         message: 'Deployment failed :(',
         error: `${stderr}`
