@@ -1,7 +1,9 @@
 # AWS Bootcamper Instance Setup Script
+
 #### The goal of this script is to automate the process of setting up the bootcampers user instance to minimize configuration steps
 
 Example command:
+
 ```bash
 curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/setup.sh | bash -s -- 1
 ```
@@ -9,24 +11,29 @@ curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_scrip
 `Created by CLRK`
 
 ## INSTRUCTOR SIDE SETUP
+
 ```bash
 #- For auto setup
-https://zuittclark.github.io/script-generator-cpst2Hosting/
+http://csp2-script-generator-int.s3-website-us-west-2.amazonaws.com/
 # importing script manually
 scp -i ~/.ssh/zuitt_keypair_us_east2.pem instructor_script.sh ubuntu@ec2-18-189-109-12.us-east-2.compute.amazonaws.com:~/
 #============================================================
 ```
+
 ### Allocate and setup Swap File
 
 ```bash
-curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2.1/inst/allocateswap.sh | bash
+curl -sSf https://csp2-scripts.s3.us-west-2.amazonaws.com/v2.1/inst/allocateswap.sh | bash
 ```
 
 ### Add bootcamper server to nginx (This still need to be done manually)
+
 ```bash
 sudo nano /etc/nginx/sites-available/default
 ```
-### add the ff under the "server_name_;" block:
+
+### add the ff under the "server*name*;" block:
+
 ```bash
         location /webhook {
             # First attempt to serve request as file, then
@@ -148,31 +155,37 @@ sudo nano /etc/nginx/sites-available/default
             proxy_cache_bypass $http_upgrade;
         }
 ```
+
 ### Restarting nginx service
+
 ```bash
 sudo systemctl restart nginx
 sudo systemctl status nginx
 ```
 
 ### Install Webhook Handler Server for Auto deploy
+
 ```bash
-curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2.1/inst/installWebhookServer.sh | bash
+curl -sSf https://csp2-scripts.s3.us-west-2.amazonaws.com/v2.1/inst/installWebhookServer.sh | bash
 ```
 
-
 ### To delete user
+
 ```bash
 sudo pkill -u bootcamper#
 sudo userdel -r bootcamper#
 
 ```
+
 ### To delete all users
+
 ```bash
 for i in {1..10}; do
     # Kill processes associated with the user
     sudo pkill -u bootcamper$i
 done
 ```
+
 ```bash
 for i in {1..10}; do
     # Delete the user along with the home directory
@@ -181,11 +194,13 @@ done
 ```
 
 ### Check if the user is deleted
+
 ```sh
 less /etc/passwd | grep bootcamper
 ```
 
 ### Other stuff
+
 ```bash
 num=1
 rm -rf node_modules/ && pm2 stop all && pm2 delete b$num && crontab -r
@@ -194,10 +209,11 @@ rm -rf node_modules/ && crontab -r
 
 num=1
 rm -rf node_modules/ && pm2 stop all && pm2 delete b$num && crontab -r
-curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2.1/bc/setup_v2.1.sh | bash -s -- $num
-``` 
+curl -sSf https://csp2-scripts.s3.us-west-2.amazonaws.com/v2.1/inst/installWebhookServer.sh | bash -s -- $num
+```
 
 ## BOOTCAMPER SIDE SETUP
+
 ```bash
 #================
 #BOOTCAMPER SIDE
@@ -205,24 +221,17 @@ curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_scrip
 #- ssh to server
 ssh -o ServerAliveInterval=60 bootcamper1@ec2-18-189-109-12.us-east-2.compute.amazonaws.com
 
-# AUTO SETUP (v1)
+##### AUTO SETUP (v2.1) #####
 
-    # Deploy script
-    curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/setup.sh | bash -s -- 1
-    # Note: the 1 arg after the -- pertains to the bootcamper number
-
-    #REDEPLOY CHANGES SCRIPT 
-    curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/redeploy.sh | bash
-
-# AUTO SETUP (v2.1)
     # Generate SSH Key
-    curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2.1/bc/sshkeygen.sh | bash
+    curl -sSf https://csp2-scripts.s3.us-west-2.amazonaws.com/v2.1/bc/sshkeygen.sh | bash
 
     # Deploy script
-    curl -sSf https://raw.githubusercontent.com/zuittclark/aws_backend_hosting_script/master/v2.1/bc/setup_v2.1.sh | bash -s -- 1
+    curl -sSf https://csp2-scripts.s3.us-west-2.amazonaws.com/v2.1/bc/setup_v2.1.sh | bash -s -- 1
     # Note: the 1 arg after the -- pertains to the bootcamper number
 
-# MANUAL SETUP
+
+##### MANUAL SETUP #####
     #- Setup node version (select only one of the ff)
     curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
         #alternatives:
@@ -241,7 +250,7 @@ ssh -o ServerAliveInterval=60 bootcamper1@ec2-18-189-109-12.us-east-2.compute.am
     pm2 start index.js --name b1 --interpreter ~/.nvm/versions/node/v16.16.0/bin/node
 
     #- Create a cron job (to run the server on boot)
-    crontab -e #select 1 for nano editor 
+    crontab -e #select 1 for nano editor
         #Add the ff:
             @reboot sh -c 'cd /home/bootcamper1/app && pm2 start index.js --name b1 --interpreter ~/.nvm/versions/node/v16.16.0/bin/node'
     crontab -l #to check
