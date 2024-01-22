@@ -39,143 +39,192 @@ server {
     }
 
     location /b2 {
-	rewrite ^/b2(/.*)$ $1 break;
-	proxy_pass http://localhost:4002;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b2(/.*)$ $1 break;
+		proxy_pass http://localhost:4002;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b3 {
-	rewrite ^/b3(/.*)$ $1 break;
-	proxy_pass http://localhost:4003;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b3(/.*)$ $1 break;
+		proxy_pass http://localhost:4003;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b4 {
-	rewrite ^/b4(/.*)$ $1 break;
-	proxy_pass http://localhost:4004;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b4(/.*)$ $1 break;
+		proxy_pass http://localhost:4004;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b5 {
-	rewrite ^/b5(/.*)$ $1 break;
-	proxy_pass http://localhost:4005;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b5(/.*)$ $1 break;
+		proxy_pass http://localhost:4005;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b6 {
-	rewrite ^/b6(/.*)$ $1 break;
-	proxy_pass http://localhost:4006;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b6(/.*)$ $1 break;
+		proxy_pass http://localhost:4006;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b7 {
-	rewrite ^/b7(/.*)$ $1 break;
-	proxy_pass http://localhost:4007;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b7(/.*)$ $1 break;
+		proxy_pass http://localhost:4007;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b8 {
-	rewrite ^/b8(/.*)$ $1 break;
-	proxy_pass http://localhost:4008;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b8(/.*)$ $1 break;
+		proxy_pass http://localhost:4008;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b9 {
-	rewrite ^/b9(/.*)$ $1 break;
-	proxy_pass http://localhost:4009;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b9(/.*)$ $1 break;
+		proxy_pass http://localhost:4009;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b10 {
-	rewrite ^/b10(/.*)$ $1 break;
-	proxy_pass http://localhost:4010;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b10(/.*)$ $1 break;
+		proxy_pass http://localhost:4010;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b11 {
-	rewrite ^/b11(/.*)$ $1 break;
-	proxy_pass http://localhost:4011;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b11(/.*)$ $1 break;
+		proxy_pass http://localhost:4011;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b12 {
-	rewrite ^/b12(/.*)$ $1 break;
-	proxy_pass http://localhost:4012;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b12(/.*)$ $1 break;
+		proxy_pass http://localhost:4012;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b13 {
-	rewrite ^/b13(/.*)$ $1 break;
-	proxy_pass http://localhost:4013;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b13(/.*)$ $1 break;
+		proxy_pass http://localhost:4013;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
     location /b14 {
-	rewrite ^/b14(/.*)$ $1 break;
-	proxy_pass http://localhost:4014;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+		rewrite ^/b14(/.*)$ $1 break;
+		proxy_pass http://localhost:4014;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+    } 
+    
+    location /b15 {
+		rewrite ^/b15(/.*)$ $1 break;
+		proxy_pass http://localhost:4015;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+	location /b16 {
+		rewrite ^/b16(/.*)$ $1 break;
+		proxy_pass http://localhost:4016;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     } 
     
 
-    location /b15 {
-	rewrite ^/b15(/.*)$ $1 break;
-	proxy_pass http://localhost:4015;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	proxy_set_header X-Forwarded-Proto $scheme;
+    location /b17 {
+		rewrite ^/b17(/.*)$ $1 break;
+		proxy_pass http://localhost:4017;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+    } 
+    
+
+    location /b18 {
+		rewrite ^/b18(/.*)$ $1 break;
+		proxy_pass http://localhost:4018;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+    } 
+    
+
+    location /b19 {
+		rewrite ^/b19(/.*)$ $1 break;
+		proxy_pass http://localhost:4019;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+    } 
+    
+
+    location /b20 {
+		rewrite ^/b20(/.*)$ $1 break;
+		proxy_pass http://localhost:4020;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
     }
+
 }
 EOF
 )
