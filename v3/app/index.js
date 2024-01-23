@@ -123,7 +123,7 @@ app.post("/deploy", (req, res) => {
           console.log("\n\n++++++++++++++++++++++++++++++++++++++++++++++++++++");
           console.log(`Deploying ${user.repoName}.`);
           console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-          if (err || stderr) {
+          if (err) {
               console.error(`Error from ${user.repoName}: ${stderr}`);
               console.log(
                   "++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
