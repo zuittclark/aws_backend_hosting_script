@@ -10,6 +10,29 @@ echo -e "===================================="
 
 
 echo -e "===================================="
+echo -e "Provisioning necessary resources..."
+echo -e "===================================="
+git clone git@ec2-54-147-90-61.compute-1.amazonaws.com:zuitt_instructors/aws_backend_hosting_script.git || { echo "Error cloning resources."; exit 1; }
+cp -r aws_backend_hosting_script/v3/utils ~/
+cp -r aws_backend_hosting_script/v3/app ~/
+cp aws_backend_hosting_script/v3/deploy.sh ~/
+rm -rf aws_backend_hosting_script
+chmod +x utils/start_docker_containers.sh
+chmod +x deploy.sh
+echo -e "===================================="
+echo -e "(DONE) Provisioning necessary resources!"
+echo -e "===================================="
+
+
+
+
+
+
+
+
+
+
+echo -e "===================================="
 echo -e "Setting up NGINX Reverse Proxies ..."
 echo -e "===================================="
 new_server_block=$(cat <<'EOF'
@@ -24,9 +47,11 @@ server {
     server_name _;
     
     location / {
-        # First attempt to serve request as file, then
-        # as directory, then fall back to displaying a 404.
-        try_files $uri $uri/ =404;
+        proxy_pass http://localhost:4100;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 
     location /b1 {
@@ -244,25 +269,7 @@ echo -e "(DONE) Setting up NGINX Reverse Proxies"
 echo -e "===================================="
 
 
-echo -e "===================================="
-echo -e "Provisioning necessary resources..."
-echo -e "===================================="
-git clone git@ec2-54-147-90-61.compute-1.amazonaws.com:zuitt_instructors/aws_backend_hosting_script.git || { echo "Error cloning resources."; exit 1; }
-cp -r aws_backend_hosting_script/v3/utils ~/
-cp aws_backend_hosting_script/v3/deploy.sh ~/
-rm -rf aws_backend_hosting_script
-chmod +x utils/start_docker_containers.sh
-chmod +x deploy.sh
-echo -e "===================================="
-echo -e "(DONE) Provisioning necessary resources!"
-echo -e "===================================="
 
-
-
-
-
-
-# This should be the end
 echo -e "===================================="
 echo -e "Setting up CRONTAB ..."
 echo -e "===================================="

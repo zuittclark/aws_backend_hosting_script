@@ -1,0 +1,21 @@
+<%- include('./partials/header') %>
+    
+    <section class="container"> 
+        <h3 align="center">LOGIN</h3>
+        <% if (errorMessage) { %>
+            <div style="color: red;">
+                <%= errorMessage %>
+            </div>
+        <% } %>
+        <form action="/login" method="post">
+            <label for="username">User:</label>
+            <input type="text" name="username" required>
+            <br>
+            <label for="token">Token:</label>
+            <input type="password" name="token" required>
+            <br>
+            <button type="submit">Login</button>
+        </form>
+    </section>
+
+<%- include('./partials/footer') %>

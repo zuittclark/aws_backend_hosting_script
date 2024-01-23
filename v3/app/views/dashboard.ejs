@@ -1,0 +1,102 @@
+<%- include('./partials/header') %>
+
+
+    <section class="container"> 
+        <hgroup>
+            <h3>Welcome to the Dashboard, <%= user.username %>! 👨‍💻 👩‍💻</h3>
+            <h5>Deployment Status: 
+                <% if (user.status === "Deployed") { %>
+                    <ins><%= user.status %></ins>
+                <%} else {%>
+                    <%= user.status %>
+                <% } %>
+            </h5>
+        </hgroup>
+        <table>
+            <tr>
+              <th>Zuitt Git Repo (SSH)</th>
+              <td>
+                <% if (user.repo === "") { %>
+                  <a href="/addRepo">Add Repository</a>
+                <%} else {%>
+                  <%= user.repo %> <a href="/addRepo">Change</a>
+                <% } %>
+              </td>
+            </tr>
+            <tr>
+              <th>Assigned Port</th>
+              <td><%= user.portNum %></td>
+            </tr>
+            <tr>
+              <th>Webhook URL</th>
+              <td>
+                <% if (user.repoName === "") { %>
+                  N/A
+                <%} else {%>
+                  <%= user.serverUrl %>/webhook/<%= user.repoName %>
+                <% } %>
+              </td>
+            </tr>
+            <tr>
+              <th>Deployed API URL</th>
+              <td>
+                <% if (user.status !== "Deployed") { %>
+                  N/A
+                <%} else {%>
+                  <a href="<%= user.serverUrl %>/<%= user.prefix %>" target="_blank"><%= user.serverUrl %>/<%= user.prefix %></a>
+                <% } %>
+              </td>
+            </tr>
+        </table>
+        
+        <!-- Button to trigger the modal -->
+        <% if (user.status === "Deployed") { %>
+          <button class="outline" data-target="modal-example" onClick="toggleModal(event)">
+            Redeploy
+          </button>
+        <% } else if (user.status === "Inactive") { %>
+          <button disabled class="secondary" data-target="modal-example" onClick="toggleModal(event)">
+            Deploy
+          </button>
+        <%} else {%>
+          <button data-target="modal-example" onClick="toggleModal(event)">
+            Deploy
+          </button>
+        <% } %>
+
+        <!-- Modal -->
+        <dialog id="modal-example">
+          <article>
+            <a href="#close"
+              aria-label="Close"
+              class="close"
+              data-target="modal-example"
+              onClick="toggleModal(event)">
+            </a>
+            <h3>Confirm your action!</h3>
+            <p>
+              Are you sure you want to deploy your application?<br>
+              Double check the information that you added before confirming.
+            </p>
+            <footer>
+              <a href="#cancel"
+                role="button"
+                class="secondary"
+                data-target="modal-example"
+                onClick="toggleModal(event)">
+                Cancel
+              </a>
+              <a href="/deploy"
+                role="button">
+                Confirm
+              </a>
+            </footer>
+          </article>
+        </dialog>
+        
+    </section>
+
+    <script src="/static/modal.js"></script>
+</body>
+
+<%- include('./partials/footer') %>

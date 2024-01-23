@@ -1,0 +1,73 @@
+<%- include('./partials/header') %>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+    <section class="container">
+        <h3>{{ message }}</h3>
+        
+        <a v-if="isError" href="/dashboard">Back to Dashboard</a>
+
+        <div v-if="isLoading">
+            <p>Please wait for a couple of minutes...</p>
+            <progress></progress>
+        </div>
+
+        <div v-if="isDeployed">
+            <p>Congratulations! You have successfully deployed your CSP2 Backend API. 🥳🎉</p>
+            <a role="button" href="/dashboard">Dashboard</a>
+        </div>
+        
+    </section>
+</div>
+
+
+
+<script>
+    
+    Vue.createApp({
+        data() {
+            return {
+                message: 'Provisioning and deploying to AWS EC2 instance. Do not refresh this page!👨‍💻',
+                isLoading: true,
+                isDeployed: false,
+                isError: false
+            }
+        },
+        async mounted(){
+            this.isLoading = true
+            this.isDeployed = false
+            try {
+                const res = await fetch("/deploy", {
+                    method: "POST"
+                })
+                
+                if(res.ok){
+                    this.message = 'API deployed successfully! 🚀';
+                    this.isLoading = false;
+                    this.isDeployed = true;
+                    return;
+                    
+                }
+
+                this.message = 'There is an error deploying your API. :(';
+                this.isLoading = false;
+                this.isDeployed = false;
+                this.isError = true;
+                return;
+
+            } catch (error) {
+                this.message = error
+                this.isLoading = false
+                this.isDeployed = false
+                this.isError = true;
+                return;
+            }
+        }
+
+
+
+    }).mount('#app')
+</script>
+
+<%- include('./partials/footer') %>

@@ -1,0 +1,17 @@
+<%- include('./partials/header') %>
+    
+    <section class="container"> 
+        <hgroup>
+            <h3>Add Repository</h3>
+            <p>Make sure that your project repository is created inside your batch's Zuitt Git organization NOT on your personal account.</p>
+        </hgroup>
+        <form action="/addRepo" method="post">
+            <label for="gitUrl">Git URL:</label>
+            <input type="text" name="gitUrl" required>
+            <br>
+            <button type="submit">Add Repository</button>
+        </form>
+        <br>
+        <a href="/dashboard">Back to Dashboard</a>
+    </section>
+<%- include('./partials/footer') %>

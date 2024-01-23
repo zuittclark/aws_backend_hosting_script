@@ -37,6 +37,6 @@ echo "*** Deploying docker container from image... ***"
 docker run --name "$folder_name"_c -p $port:4000 -d -v $PWD:/app -v /app/node_modules $folder_name || { echo "Error running container instance."; exit 1; }
 echo "Done!"
 
-echo -e "\n======================================================================"
+echo -e "\n++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "API successfully deployed to docker with contaner name "$folder_name"_c !"
-echo -e "======================================================================\n"
+echo -e "++++++++++++++++++++++++++++++++++++++++++++++++\n"
